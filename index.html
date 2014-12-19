@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>IGotMessage - Finances</title>
+<link href="style.css" type="text/css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Get stock quotes, research investments and read business news that help you manage your financial life." name="description">
+<meta content="financial Information,investing,investor,market news,stock research,business news,economy,finance,personal finance,quote,loan,student loan,morgage loan,car loan" name="keywords">
+<meta content="all" name="robots">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script language="JavaScript" src="src.js"></script>
+</head>
+
+<body onload="start();">
+
+<div class="wrapper" align="center">
+
+    <table width="90%" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tbody>
+          <tr valign="top">
+            <td class="normalText" align="left">
+                <input name="txtQuote" id="symbol" onkeypress="return CheckEnter(event);" value="YHOO" type="text" />
+                <input name="button" type="button" id="btnQuote" onclick="return SendRequest();" value="Get Quotes" />
+                <br />
+                <span class="smallText">e.g. &quot;YHOO or YHOO GOOG&quot;</span>
+
+                <div id="service" style="padding:10px 0;">
+                    <table style="border: 1px solid black;" width="770">
+                      <tbody>
+                        <tr style="font-size: 14px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">
+                            <td>Symbol</td>
+                            <td>Date</td>
+                            <td>Time</td>
+                            <td>Trade</td>
+                            <td>% Chg</td>
+                            <td>Bid</td>
+                            <td>Ask</td>
+                            <td>Volume</td>
+                            <td>High</td>
+                            <td>Low</td>
+                        </tr>
+                        <tr style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; padding: 0px 2px;">
+                            <td id="name">YHOO</td>
+                            <td id="date">3/11/2011</td>
+                            <td id="time">5:00pm</td>
+                            <td id="result">$17.42</td>
+                            <td id="chg"><span id="colorText" class="greenText">+0.36(+2.11%)</span></td>
+                            <td id="bid">17.30</td>
+                            <td id="ask">17.77</td>
+                            <td id="volume">19,455,986</td>
+                            <td id="high">17.54</td>
+                            <td id="low">17.00</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                  <br />
+                  <img id="stockChart" src="loading1.gif" border="0" /><br />
+                  <span class="linkText">1d</span>&nbsp;&nbsp;
+                  <span id="div5d_0">5d</span>&nbsp;&nbsp;
+                  <span id="div3m_0">3m</span>&nbsp;&nbsp;
+                  <span id="div6m_0">6m</span>&nbsp;&nbsp;
+                  <span id="div1y_0">1y</span>&nbsp;&nbsp;
+                  <span id="div2y_0">2y</span>&nbsp;&nbsp;
+                  <span id="div5y_0">5y</span>&nbsp;&nbsp;
+                  <a id="link1" class="linkText" href='javascript:changeChart(7);'><span id="divMax_0"><b>max</b></span></a>
+                  <br />
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

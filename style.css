@@ -1,0 +1,255 @@
+body
+{
+    margin:0;
+    padding:0;
+    height:100%;
+    margin: 0px;
+    background-color: #d7eff2;
+}
+.wrapper {
+    width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+h1
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+    margin:0 0 0 0;
+}
+.postTitle
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: Blue;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.readon
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: Red;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.titleText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.subtitleText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.normalText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+}
+.bigText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+.grayText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: Blue;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.barText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #000;
+    padding-top: 10px;
+    border-bottom: solid 1px #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.dateText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    font-weight: bold;
+}
+.linkText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: Blue;
+}
+.normalLinkText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: Blue;
+}
+.linkGrayText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: Blue;
+}
+.errorText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #ff0000;
+    text-decoration: none;
+}
+.greenText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: rgb(83, 241, 83);
+    text-decoration: none;
+}
+.redText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: Red;
+    text-decoration: none;
+}
+.programText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+}
+.programGrayText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+}
+.programGreenText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: Green;
+    text-decoration: none;
+}
+.smallText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #666;
+    text-decoration: none;
+}
+.smallLinkText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: Blue;
+    text-decoration: underline;
+}
+.greenButton
+{
+    margin: 0;
+    border: 0;
+    background: URL(images/greenbuttonbg.gif) no-repeat;
+    height: 21px;
+    width: 120px;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, Sans-serif;
+    font-size: 14px;
+    margin: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    vertical-align:middle;
+    overflow: hidden;
+    cursor:pointer;
+    cursor:hand;
+}
+/*
+Tabs
+*/
+:focus { -moz-outline-style: none; }
+#header ul
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#header li
+{
+    float: left;
+    border-left: 1px solid #d0d0d0;
+    border-right: 1px solid #212121;
+    border-bottom-width: 0;
+    margin: 0 0em
+}
+#header a
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    background: URL(images/tabbg.gif) repeat;
+    padding: 0.2em 1em 0.2em 1em;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+#header a:hover
+{
+    background: URL(images/tabhoverbg.gif) repeat;
+}
+#header #selected
+{
+    border-color: #E2C068;
+    background: #E2C068;
+}
+#header #selected a
+{
+    position: relative;
+    top: 1px;
+    background: #E2C068;
+    color: #000;
+    font-weight: bold;
+}
+#content
+{
+    background: #E2C068;
+    clear: both;
+    padding: 0.2em 1em 0.2em;
+}
+.bgWhite
+{
+    background-color:White;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+}
+.thNormalText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #000;
+    background-color:#E2C068;
+}
