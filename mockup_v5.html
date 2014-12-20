@@ -1,0 +1,69 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/foundation.css">
+<!-- <link rel="stylesheet" type="text/css" href="lib/lightbox/css/lightbox.css">
+<link rel="stylesheet" type="text/css" href="lib/lightbox/css/screen.css"> -->
+<style type="text/css">
+    .row {
+        max-width: 1400px;
+    }
+    #chart_div {
+        height: 400px;
+    }
+    #annotation_chart_div {
+        height: 100px;
+        background-color: #eee;
+    }
+    #annotations img {
+        width: 600px;
+    }
+    table tr th, table tr td {
+        padding: 10px 4px;
+        border: thin solid #555;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    .annotation_marker {
+        display: inline-block;
+        padding: 0px 4px;
+        text-align: center;
+        position: relative;
+    }
+    .annotation_marker.present {
+        background-color: white;
+    }
+</style>
+<script type='text/javascript' src="lib/underscore.js"></script>
+<script type='text/javascript' src="lib/jquery_1.9.1.js"></script>
+<!-- <script type='text/javascript' src="lib/lightbox/js/lightbox.js"></script> -->
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
+<script type='text/javascript' src="src/mockup_v5_data.js"></script>
+<script type="text/javascript" src="src/mockup_v5_graphing.js"></script>
+</head>
+
+<body>
+<div class="row">
+    <div class="medium-6 columns">
+        <div id='chart_div'></div>
+        <div id='annotation_chart_div'></div>
+    </div>
+    <div class="medium-6 columns">
+        <h5><span id='number_of_annotations'>0</span> annotations filtered</h5>
+        <table>
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>Score</th>
+                    <th>Attenuation</th>
+                    <th>Annotation</th>
+                </tr>
+            </thead>
+            <tbody id='annotations'>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
