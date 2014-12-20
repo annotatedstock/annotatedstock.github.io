@@ -15,14 +15,18 @@
             var ticker = document.getElementById('ticker').value;
             var interval = document.getElementById('interval').value;
             var period = document.getElementById('period').value;
+            var drop_data = document.getElementById('drop_data').value;
 
-            get_prices(exchange, ticker, interval, period).done(function(parsed) {
-                var data_element = document.getElementById('data');
+            var data_element = document.getElementById('data');
+            data_element.innerText = 'Fetching data...';
+            get_prices(exchange, ticker, interval, period, drop_data).done(function(parsed) {
                 data_element.innerText = JSON.stringify(parsed['data']);
                 // copy to clip board
                 // var copied = data_element.createTextRange();
                 // copied.execCommand("Copy");
                 // document.getElementById('message').innerText = 'Copied to clip board!';
+            }).fail(function(failure_to_parse) {
+                data_element.innerText = failure_to_parse;
             });
         }
     </script>
@@ -30,6 +34,7 @@
     <input type="text" id="ticker" placeholder="Ticker" value="INDEXDJX"><br>
     <input type="text" id="interval" placeholder="Interval" value="60"><br>
     <input type="text" id="period" placeholder="Period" value="10d"><br>
+    <input type="text" id="drop_data" placeholder="Drop data" value="10">Set this to 1 to drop no data, 10 to drop 90%, 100 to drop 99%<br>
     <button onclick="get_and_display_price_data()">Get price data from Google</button>
     <div id="message"></div>
     <br>

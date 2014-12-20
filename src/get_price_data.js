@@ -1,6 +1,6 @@
 
 
-function parse_prices(response) {
+function parse_prices(response, drop_data) {
     /*
     // Sample data:
 
@@ -17,6 +17,9 @@ function parse_prices(response) {
     3,17908.7,17909.55,17898.88,17901.45,0
     4,17915.64,17917.98,17904.63,17908.74,0
     */
+    var drop_data = drop_data || 10; // set this to 1 to drop no data.  A value of 10 will drop 90% of data, 100, will drop 99%.
+    drop_data = parseInt(drop_data, 10); // ensure it's a number
+
     function get_as_num(key) {
         var regexp = new RegExp(key+'=(-?\\d+)');
         var str = regexp.exec(response)[1];
@@ -49,7 +52,6 @@ function parse_prices(response) {
     var day_regex = new RegExp('^([a-zA-Z]\\d+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+)$', 'mg');
     var entry_regex = new RegExp('^(\\d+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+)$');
     var day_match = day_regex.exec(response);
-    var drop_data = 10; // set this to 1 to drop no data.  A value of 10 will drop 90% of data, 100, will drop 99%.
     while(day_match){
         var entry = extract_values(day_match);
         entry['day_boundary'] = true;
@@ -75,7 +77,6 @@ function parse_prices(response) {
             // data_by_time[entry['date']] = entry;
         };
 
-
         var day_match = day_regex.exec(response);
     }
     parsed = {
@@ -89,13 +90,20 @@ function parse_prices(response) {
     return parsed;
 }
 
-function get_prices(ticker, exchange, interval, period) {
+function get_prices(ticker, exchange, interval, period, drop_data) {
     var deferred = $.Deferred();
     var url = 'http://www.google.com/finance/getprices?q='+ticker+'&x='+exchange+'&i='+interval+'&p='+period+'&f=d,c,h,l,o,v';
     var request = $.get(url);
     console.log('Requesting: ', url);
     request.done(function(response) {
-        deferred.resolve(parse_prices(response));
+        console.log('Got response', response);
+        try {
+            var parsed = parse_prices(response, drop_data);
+            deferred.resolve(parsed);
+        } catch (e) {
+            console.log(e);
+            deferred.reject('error parsing response: ' + response);
+        }
     });
     return deferred;
 }
