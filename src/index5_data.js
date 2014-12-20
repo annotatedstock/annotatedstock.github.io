@@ -14,20 +14,20 @@ window.annotation_data = [
     "text": "Something interesting",
     "z_value": 1,
     "z_attenuation": 4,
-    "annotation_url": "http://share.qiqqa.com/20151212/D6OEpnjblk2lI1yAInDOBw/shared_image.png",
+    "annotation_url": "http://share.qiqqa.com/20151212/D6OEpnjblk2lI1yAInDOBw/",
 },
 {
     "date": 1418066920,
     "text": "Something interesting on same day",
     "z_value": -0.4,
     "z_attenuation": 10,
-    "annotation_url": "http://share.qiqqa.com/20151212/D6OEpnjblk2lI1yAInDOBw/shared_image.png",
+    "annotation_url": "http://share.qiqqa.com/20151212/D6OEpnjblk2lI1yAInDOBw/",
 },
 {
     "date": 1418365920,
     "text": "Something else interesting",
     "z_value": 0.3,
     "z_attenuation": 6,
-    "annotation_url": "http://share.qiqqa.com/20151212/D6OEpnjblk2lI1yAInDOBw/shared_image.png",
+    "annotation_url": "http://share.qiqqa.com/20151212/D6OEpnjblk2lI1yAInDOBw/",
 }
 ];

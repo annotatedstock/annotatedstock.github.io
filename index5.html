@@ -1,6 +1,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/foundation.css">
+<!-- <link rel="stylesheet" type="text/css" href="lib/lightbox/css/lightbox.css">
+<link rel="stylesheet" type="text/css" href="lib/lightbox/css/screen.css"> -->
 <style type="text/css">
     .row {
         max-width: 1400px;
@@ -21,6 +23,7 @@
 </style>
 <script type='text/javascript' src="lib/underscore.js"></script>
 <script type='text/javascript' src="lib/jquery_1.9.1.js"></script>
+<!-- <script type='text/javascript' src="lib/lightbox/js/lightbox.js"></script> -->
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
 <script type='text/javascript' src="src/index5_data.js"></script>
 <script type='text/javascript'>
@@ -79,8 +82,9 @@
                     '<tr><td>'+annotation['text']+
                     '</td><td>'+annotation['z_value']+
                     '</td><td>'+annotation['z_attenuation']+
-                    '</td><td><img src="'+annotation['annotation_url']+
-                    '"></img></td></tr>'
+                    // '</td><td><a href="'+annotation['annotation_url']+'" rel="lightbox" title="'+annotation['text']+'"></a>'+
+                    '</td><td><a href="'+annotation['annotation_url']+'"><img src="'+annotation['annotation_url']+'shared_image.png"></img></a>'+
+                    '</td></tr>'
                 );
             }
             $annotations_el.html(annotations_html);
