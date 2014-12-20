@@ -90,8 +90,6 @@ function parse_prices(response) {
 }
 
 function get_prices(ticker, exchange, interval, period) {
-    interval = '60';
-    period = '10d';
     var deferred = $.Deferred();
     var url = 'http://www.google.com/finance/getprices?q='+ticker+'&x='+exchange+'&i='+interval+'&p='+period+'&f=d,c,h,l,o,v';
     var request = $.get(url);
