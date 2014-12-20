@@ -49,12 +49,13 @@ function parse_prices(response) {
     var day_regex = new RegExp('^([a-zA-Z]\\d+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+)$', 'mg');
     var entry_regex = new RegExp('^(\\d+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+),([.\\d]+)$');
     var day_match = day_regex.exec(response);
-    var day_counter = 0;
+    var drop_data = 10; // set this to 1 to drop no data.  A value of 10 will drop 90% of data, 100, will drop 99%.
     while(day_match){
         var entry = extract_values(day_match);
         entry['day_boundary'] = true;
-        entry['date'] = day_match[1];
-        data.push(entry);
+        var total_seconds = parseInt(day_match[1].slice(1));
+        entry['date'] = total_seconds;
+        // data.push(entry);  // Currently we also drop the day data
 
         var entries_regex = new RegExp('[^a-zA-Z]*', 'mg');
         entries_regex.lastIndex = day_regex.lastIndex;
@@ -67,14 +68,15 @@ function parse_prices(response) {
             }
             var entry_match = entry_str.match(entry_regex);
             var entry = extract_values(entry_match);
-            entry['date'] = parseInt(entry_match[1], 10) + day_counter*24*60 + market_open_minute + timezone_offset;
-            data.push(entry);
-            data_by_time[entry['date']] = entry;
+            entry['date'] = total_seconds + (parseInt(entry_match[1], 10) + market_open_minute + timezone_offset)*60;
+            if(i%drop_data==0){
+                data.push(entry);
+            }
+            // data_by_time[entry['date']] = entry;
         };
 
 
         var day_match = day_regex.exec(response);
-        day_counter += 1;
     }
     parsed = {
         market_open_minute: market_open_minute,
@@ -91,7 +93,9 @@ function get_prices(ticker, exchange, interval, period) {
     interval = '60';
     period = '10d';
     var deferred = $.Deferred();
-    var request = $.get('http://www.google.com/finance/getprices?q='+ticker+'&x='+exchange+'&i='+interval+'&p='+period+'&f=d,c,h,l,o,v')
+    var url = 'http://www.google.com/finance/getprices?q='+ticker+'&x='+exchange+'&i='+interval+'&p='+period+'&f=d,c,h,l,o,v';
+    var request = $.get(url);
+    console.log('Requesting: ', url);
     request.done(function(response) {
         deferred.resolve(parse_prices(response));
     });

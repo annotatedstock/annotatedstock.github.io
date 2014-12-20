@@ -11,7 +11,7 @@
         // http://www.google.com/finance/getprices?q=AAPL&x=NASDAQ&i=60&p=10d&f=d,c,h,l,o,v
         // http://www.google.com/finance/getprices?q=.DJI&x=INDEXDJX&i=60&p=10d&f=d,c,h,l,o,v
         get_prices('.DJI', 'INDEXDJX', '60', '10d').done(function(parsed) {
-            console.log(parsed);
+            console.log(JSON.stringify(parsed['data']));
         });
     </script>
 </body>

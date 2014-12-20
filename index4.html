@@ -1,0 +1,50 @@
+<html>
+<head>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
+<script type='text/javascript'>
+    google.load('visualization', '1', {'packages':['annotationchart']});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Kepler-22b mission');
+        data.addColumn('string', 'Kepler title');
+        data.addColumn('string', 'Kepler text');
+        data.addColumn('number', 'Gliese 163 mission');
+        data.addColumn('string', 'Gliese title');
+        data.addColumn('string', 'Gliese text');
+        data.addRows([
+            [new Date(2314, 2, 15), 12400, undefined, undefined,
+                                    10645, undefined, undefined],
+            [new Date(2314, 2, 16), 24045, undefined, undefined,
+                                    12374, undefined, undefined],
+            [new Date(2314, 2, 17), 35022, undefined, undefined,
+                                    15766, undefined, undefined],
+            [new Date(2314, 2, 18), 12284, undefined, undefined,
+                                    34334, undefined, undefined],
+            [new Date(2314, 2, 19), 8476, undefined, undefined,
+                                    66467, undefined, undefined],
+            [new Date(2314, 2, 20), 0, undefined, undefined,
+                                    79463, undefined, undefined]
+        ]);
+
+        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+
+        var options = {
+            displayAnnotations: false
+        };
+
+        chart.draw(data, options);
+
+        google.visualization.events.addListener(chart, 'rangechange', rangechange_handler);
+        function rangechange_handler(e) {
+            console.log('You changed the range to ', e['start'], ' and ', e['end']);
+        }
+    }
+</script>
+</head>
+
+<body>
+<div id='chart_div' style='width: 900px; height: 500px;'></div>
+</body>
+</html>

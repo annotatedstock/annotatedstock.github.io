@@ -1,0 +1,115 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/foundation.css">
+<style type="text/css">
+    .row {
+        max-width: 1400px;
+    }
+    #chart_div {
+        height: 400px;
+    }
+    #annotation_chart_div {
+        height: 100px;
+        background-color: #eee;
+    }
+    #annotations img {
+        width: 600px;
+    }
+    #annotations tr td {
+        padding: 10px 0;
+    }
+</style>
+<script type='text/javascript' src="lib/underscore.js"></script>
+<script type='text/javascript' src="lib/jquery_1.9.1.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
+<script type='text/javascript' src="src/index5_data.js"></script>
+<script type='text/javascript'>
+    google.load('visualization', '1', {'packages':['annotationchart']});
+    google.setOnLoadCallback(drawChart);
+
+    var rows = [];
+    console.log('Convering stock_data into js form');
+    for (var i = 0, len = window.stock_data.length; i < len; i+=1) {
+        var entry = window.stock_data[i];
+        var date_value = new Date(0);
+        date_value.setUTCSeconds(entry['date']);
+        y_value = entry['open'];
+        rows.push([date_value, y_value]);
+    };
+
+    var annotations = [];
+    console.log('Convering annotation_data into js form');
+    for (var i = 0, len = window.annotation_data.length; i < len; i+=1) {
+        var entry = window.annotation_data[i];
+        var date_value = new Date(0);
+        entry['date'] = date_value.setUTCSeconds(entry['date']);
+        annotations.push(entry);
+    };
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Stock price');
+        data.addRows(rows);
+
+        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+
+        var options = {
+            displayAnnotations: false
+        };
+
+        chart.draw(data, options);
+
+        google.visualization.events.addListener(chart, 'rangechange', rangechange_handler);
+        google.visualization.events.addListener(chart, 'select', rangechange_handler);
+
+        function rangechange_handler(e) {
+            console.log('You changed the range to ', e['start'], ' and ', e['end']);
+
+            var accepted_annotations = _.filter(annotations, function(annotation, i) {
+                return annotation['date'] >= e['start'] && annotation['date'] <= e['end']}
+            );
+            console.log('accepted_annotations = ', accepted_annotations);
+            $('#number_of_annotations').html(accepted_annotations.length);
+            var $annotations_el = $('#annotations');
+            var annotations_html = '';
+            for (var i=0, len=accepted_annotations.length; i < len; i+=1) {
+                var annotation = accepted_annotations[i];
+                annotations_html += (
+                    '<tr><td>'+annotation['text']+
+                    '</td><td>'+annotation['z_value']+
+                    '</td><td>'+annotation['z_attenuation']+
+                    '</td><td><img src="'+annotation['annotation_url']+
+                    '"></img></td></tr>'
+                );
+            }
+            $annotations_el.html(annotations_html);
+        }
+    }
+</script>
+</head>
+
+<body>
+<div class="row">
+    <div class="medium-6 columns">
+        <div id='chart_div'></div>
+        <div id='annotation_chart_div'></div>
+    </div>
+    <div class="medium-6 columns">
+        <h5><span id='number_of_annotations'>0</span> annotations filtered</h5>
+        <table>
+            <thead>
+                <tr>
+                    <td>Comment</td>
+                    <td>Score</td>
+                    <td>Attenuation</td>
+                    <td>Annotation</td>
+                </tr>
+            </thead>
+            <tbody id='annotations'>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
