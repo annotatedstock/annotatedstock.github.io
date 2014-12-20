@@ -77,6 +77,7 @@ function changeChart(select)
     {
     case 0:
         stockChart.src = "http://ichart.finance.yahoo.com/b?s="+symbol+"&"+rand_no;
+        //http://chart.finance.yahoo.com/t?s=YHOO&width=450&height=270
         break;
     case 1:
         stockChart.src = "http://ichart.finance.yahoo.com/w?s="+symbol+"&"+rand_no;
